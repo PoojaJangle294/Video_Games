@@ -1,0 +1,22 @@
+html body {
+    background: linear-gradient(to bottom, #081221, #03080f);
+    color: #ffffff;
+    margin: 0;
+    padding: 0;
+    font-family: 'Mulish', sans-serif;
+  }
+input{
+    background-color: #182c47;
+    color: #c1d1e8;;
+    font-weight: bold;
+}
+h1,h2,h3,h4,h5{
+    color: #ffffff;
+    font-family: 'Montserrat',sans-serif;
+}
+
+p{
+    color: #c1d1e8;
+    font-family: 'Mulish', sans-serif;
+}
+

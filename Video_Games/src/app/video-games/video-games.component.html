@@ -1,0 +1,67 @@
+<div class="container">
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <h2>Filter Results</h2>
+
+    <!-- Filter Name -->
+    <div class="filter-group">
+      <label for="name-filter">Name (contains)</label>
+      <input 
+              type="text" 
+              [(ngModel)]="filteredVideoData.name" 
+              (ngModelChange)="applyFilter()" 
+              placeholder="Enter Video name" 
+            />
+    </div>
+
+    <!-- Filter Score -->
+    <div class="filter-group">
+      <label for="score-filter">Minimum Score</label>
+      <input type="number" id="score-filter" min="1" max="10" placeholder="1 - 10" 
+      [(ngModel)]="filteredVideoData.score" (ngModelChange)="applyFilter()">
+    </div>
+
+    <div class="order-by">
+      <label for="order-select">Order By</label>
+      <div class="order-container">
+        <button class="up-arrow"><img class="arrow-icon" src="https://img.icons8.com/?size=100&id=7q4GOgAJYxv0&format=png&color=FFFFFF" alt=""></button>
+        <select id="order-select" class="order-dropdown">
+          <option value="release-date">Release Date</option>
+          <option value="score">Score</option>
+          <option value="name">Name</option>
+        </select>
+      </div>
+      <button class="clear-btn" (click)="clearFilter()">Clear</button>
+    </div>
+  </aside>
+
+  <!-- Main Content -->
+  <main class="main-content">
+    <!-- Game Card -->
+    <div class="game-list">
+      <div *ngFor="let data of videoData.data">
+        <div class="game-card">
+          <div><img src="/assets/images/black-solid-color-background.jpg" alt=""></div>
+          <div class="video-text">
+            <h3 class="game-title">{{data.attributes.name}}</h3>
+          <p class="release-date">Release Date: {{data.attributes.firstReleaseDate | date:'dd/MM/yyyy'}}</p>
+          <p class="game-summary">
+            {{ data.attributes.summary.length > 90 ? (data.attributes.summary | slice:90) + '...' : data.attributes.summary }}
+          </p>
+          <div class="game-score"> {{data.attributes.rating | number: '1.0-0'}}</div>
+          </div>
+        </div>
+      </div>
+      
+
+      <!-- Pagination -->
+      <div class="pagination">
+        <span>Page {{ currentPage }} / {{ totalPages }}</span>
+        <div class="pagination-controls">
+          <button (click)="prevPage()" [disabled]="currentPage === 1">◄</button>
+          <button (click)="nextPage()" [disabled]="currentPage === totalPages">►</button>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
